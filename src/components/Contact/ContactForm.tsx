@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { Button } from '../ui/Button';
 import { services } from '../Services/services.data';
+import { submitContactForm } from '@/lib/contact';
 
 interface ContactFormData {
   name: string;
@@ -13,12 +15,18 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>();
 
   const onSubmit = async (data: ContactFormData) => {
-    // TODO: Implement form submission
-    console.log(data);
+    try {
+      await submitContactForm(data);
+      toast.success('Message sent successfully! We will get back to you soon.');
+      reset();
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+    }
   };
 
   return (
@@ -28,7 +36,13 @@ export function ContactForm() {
           Name
         </label>
         <input
-          {...register('name', { required: 'Name is required' })}
+          {...register('name', { 
+            required: 'Name is required',
+            minLength: {
+              value: 2,
+              message: 'Name must be at least 2 characters'
+            }
+          })}
           type="text"
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         />
@@ -82,7 +96,13 @@ export function ContactForm() {
           Message
         </label>
         <textarea
-          {...register('message', { required: 'Message is required' })}
+          {...register('message', { 
+            required: 'Message is required',
+            minLength: {
+              value: 10,
+              message: 'Message must be at least 10 characters'
+            }
+          })}
           rows={4}
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         />

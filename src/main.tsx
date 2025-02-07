@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-
+// Validate environment configuration on startup
 import { validateConfig } from './lib/config';
 validateConfig();
 

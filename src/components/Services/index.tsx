@@ -20,7 +20,7 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
           <p className="mt-4 text-base sm:text-lg leading-8 text-gray-600 px-4">
             Comprehensive solutions tailored to your business needs
           </p>

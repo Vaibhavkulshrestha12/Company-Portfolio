@@ -32,7 +32,7 @@ export function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16 md:pt-0">
-      
+      {/* Mobile menu button */}
       <div className="fixed top-20 left-4 z-50 md:hidden">
         <Button
           variant="outline"
@@ -44,7 +44,7 @@ export function AdminPage() {
         </Button>
       </div>
 
-     
+      {/* Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 z-40 w-64 transform bg-white shadow-lg transition-transform duration-200 ease-in-out md:translate-x-0 ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -92,7 +92,7 @@ export function AdminPage() {
         </div>
       </div>
 
-      
+      {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden"

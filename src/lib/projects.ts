@@ -43,7 +43,7 @@ export function subscribeToProjects(callback: (projects: Project[]) => void) {
   const projectsRef = collection(db, 'projects');
   const q = query(projectsRef, orderBy('title'));
   
-  
+  // Initialize sample data if needed
   initializeSampleProjects();
   
   return onSnapshot(q, (snapshot) => {
