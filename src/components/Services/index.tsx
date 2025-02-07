@@ -11,7 +11,7 @@ export function Services() {
   };
 
   return (
-    <section id="services" className="bg-gray-50 py-24">
+    <section id="services" className="bg-gray-50 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -20,13 +20,13 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
-          <p className="mt-4 text-lg leading-8 text-gray-600">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
+          <p className="mt-4 text-base sm:text-lg leading-8 text-gray-600 px-4">
             Comprehensive solutions tailored to your business needs
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 sm:mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <ServiceCard
               key={service.title}

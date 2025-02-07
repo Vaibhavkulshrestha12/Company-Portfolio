@@ -1,4 +1,4 @@
-// Environment configuration
+
 export const config = {
   firebase: {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,7 +10,7 @@ export const config = {
   }
 } as const;
 
-// Validate environment variables
+
 export function validateConfig() {
   const { firebase } = config;
   

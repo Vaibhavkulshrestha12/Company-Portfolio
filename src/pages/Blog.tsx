@@ -22,7 +22,7 @@ export function BlogPage() {
   const perPage = 6;
 
   useEffect(() => {
-    // Filter posts based on search and category
+    
     const filtered = samplePosts.filter(post => {
       const matchesSearch = search === '' || 
         post.title.toLowerCase().includes(search.toLowerCase()) ||

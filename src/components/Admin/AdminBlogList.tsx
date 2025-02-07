@@ -13,14 +13,18 @@ export function AdminBlogList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Subscribe to real-time updates
+    let mounted = true;
     const unsubscribe = subscribeToBlogs((updatedPosts) => {
-      setPosts(updatedPosts);
-      setLoading(false);
+      if (mounted) {
+        setPosts(updatedPosts);
+        setLoading(false);
+      }
     });
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
+    return () => {
+      mounted = false;
+      unsubscribe();
+    };
   }, []);
 
   async function handleDelete(post: Post) {
@@ -35,28 +39,39 @@ export function AdminBlogList() {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex min-h-[400px] items-center justify-center">
+        <div className="text-center">
+          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto"></div>
+          <p className="text-gray-600">Loading posts...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <div className="mb-6 flex justify-between">
+    <div className="rounded-lg bg-white p-6 shadow-lg">
+      <div className="mb-6 flex justify-between items-center">
         <h2 className="text-2xl font-bold text-gray-900">Blog Posts</h2>
-        <Button onClick={() => setIsEditing(true)}>New Post</Button>
+        <Button onClick={() => setIsEditing(true)} size="sm">
+          New Post
+        </Button>
       </div>
 
       {isEditing ? (
-        <PostEditor
-          post={selectedPost}
-          onSave={() => {
-            setIsEditing(false);
-            setSelectedPost(undefined);
-          }}
-          onCancel={() => {
-            setIsEditing(false);
-            setSelectedPost(undefined);
-          }}
-        />
+        <div className="rounded-lg border border-gray-200 p-6">
+          <PostEditor
+            post={selectedPost}
+            onSave={() => {
+              setIsEditing(false);
+              setSelectedPost(undefined);
+            }}
+            onCancel={() => {
+              setIsEditing(false);
+              setSelectedPost(undefined);
+            }}
+          />
+        </div>
       ) : (
         <PostList
           posts={posts}
